@@ -1,16 +1,29 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { todoListApi } from "../api";
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 export function TodoList() {
-  const [page, setPage] = useState(1);
+  const [enabled, setEnabled] = useState(false);
 
-  const { data: todoItems, error, isPending } = useQuery({
-    queryKey: ["tasks", "slist", { page }],
-    queryFn: meta => todoListApi.getTodoList({ page }, meta)
+  const {
+    data: todoItems,
+    error,
+    status,
+    fetchStatus,
+    isPlaceholderData,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage
+  } = useInfiniteQuery({
+    enabled: enabled,
+    ...todoListApi.getTodoListQueryOptions()
   });
 
-  if (isPending) {
+  const cursorRef = useIntersection(() => {
+    fetchNextPage();
+  });
+
+  if (status === "pending" && fetchStatus === "fetching") {
     return <div>Loading...</div>;
   }
 
@@ -21,8 +34,13 @@ export function TodoList() {
   return (
     <div className="p-5 mx-auto max-w-[1200px] mt-10">
       <h1 className="mb-5">Todo List</h1>
-      <ul className="flex flex-col gap-4">
-        {todoItems?.data.map(todo => (
+      <button onClick={() => setEnabled(e => !e)}>Toggle enabled</button>
+      <ul
+        className={
+          "flex flex-col gap-4" + (isPlaceholderData ? "animate-pulse" : "")
+        }
+      >
+        {todoItems?.map(todo => (
           <li
             className="decoration-0 border border-blue-500 rounded p-3"
             key={todo.id}
@@ -31,20 +49,31 @@ export function TodoList() {
           </li>
         ))}
       </ul>
-      <div className="flex gap-2 items-center mt-4">
-        <button
-          onClick={() => setPage(prev => Math.max(prev - 1, 0))}
-          className="p-3 rounded border border-blue-500 bg-blue-500"
-        >
-          prev
-        </button>
-        <button
-          onClick={() => setPage(prev => Math.min(prev + 1, todoItems.pages))}
-          className="p-3 rounded border border-blue-500 bg-blue-500"
-        >
-          next
-        </button>
+      <div className="flex gap-2 items-center mt-4" ref={cursorRef}>
+        {!hasNextPage && <span>No more data</span>}
+        {isFetchingNextPage && <span>Loading...</span>}
       </div>
     </div>
   );
+}
+
+export function useIntersection(onIntersect: () => void) {
+  const unsubscribe = useRef(() => {});
+
+  return useCallback((el: HTMLDivElement | null) => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(intersection => {
+        if (intersection.isIntersecting) {
+          onIntersect();
+        }
+      });
+    });
+
+    if (el) {
+      observer.observe(el);
+      unsubscribe.current = () => observer.disconnect();
+    } else {
+      unsubscribe.current();
+    }
+  }, []);
 }
