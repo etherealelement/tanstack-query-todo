@@ -1,0 +1,394 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "text": "Learn React",
+      "done": false
+    },
+    {
+      "id": "2",
+      "text": "Learn Angular",
+      "done": false
+    },
+    {
+      "id": "3",
+      "text": "Learn Vue",
+      "done": false
+    },
+    {
+      "id": "4",
+      "text": "Learn Node.js",
+      "done": false
+    },
+    {
+      "id": "5",
+      "text": "Learn TypeScript",
+      "done": false
+    },
+    {
+      "id": "6",
+      "text": "Learn HTML",
+      "done": false
+    },
+    {
+      "id": "7",
+      "text": "Learn CSS",
+      "done": false
+    },
+    {
+      "id": "8",
+      "text": "Learn JavaScript",
+      "done": false
+    },
+    {
+      "id": "9",
+      "text": "Learn Python",
+      "done": false
+    },
+    {
+      "id": "10",
+      "text": "Learn Go",
+      "done": false
+    },
+    {
+      "id": "11",
+      "text": "Learn C++",
+      "done": false
+    },
+    {
+      "id": "12",
+      "text": "Learn Rust",
+      "done": false
+    },
+    {
+      "id": "13",
+      "text": "Learn Java",
+      "done": false
+    },
+    {
+      "id": "14",
+      "text": "Learn SQL",
+      "done": false
+    },
+    {
+      "id": "15",
+      "text": "Learn MongoDB",
+      "done": false
+    },
+    {
+      "id": "16",
+      "text": "Learn Docker",
+      "done": false
+    },
+    {
+      "id": "17",
+      "text": "Learn Kubernetes",
+      "done": false
+    },
+    {
+      "id": "18",
+      "text": "Learn AWS",
+      "done": false
+    },
+    {
+      "id": "19",
+      "text": "Learn Azure",
+      "done": false
+    },
+    {
+      "id": "20",
+      "text": "Learn Git",
+      "done": false
+    },
+    {
+      "id": "21",
+      "text": "Learn GraphQL",
+      "done": false
+    },
+    {
+      "id": "22",
+      "text": "Learn Sass",
+      "done": false
+    },
+    {
+      "id": "23",
+      "text": "Learn Less",
+      "done": false
+    },
+    {
+      "id": "24",
+      "text": "Learn Bootstrap",
+      "done": false
+    },
+    {
+      "id": "25",
+      "text": "Learn Tailwind CSS",
+      "done": false
+    },
+    {
+      "id": "26",
+      "text": "Learn Redux",
+      "done": false
+    },
+    {
+      "id": "27",
+      "text": "Learn Next.js",
+      "done": false
+    },
+    {
+      "id": "28",
+      "text": "Learn Nuxt.js",
+      "done": false
+    },
+    {
+      "id": "29",
+      "text": "Learn Flask",
+      "done": false
+    },
+    {
+      "id": "30",
+      "text": "Learn Django",
+      "done": false
+    },
+    {
+      "id": "31",
+      "text": "Learn Express.js",
+      "done": false
+    },
+    {
+      "id": "32",
+      "text": "Learn FastAPI",
+      "done": false
+    },
+    {
+      "id": "33",
+      "text": "Learn PHP",
+      "done": false
+    },
+    {
+      "id": "34",
+      "text": "Learn Laravel",
+      "done": false
+    },
+    {
+      "id": "35",
+      "text": "Learn Symfony",
+      "done": false
+    },
+    {
+      "id": "36",
+      "text": "Learn Ruby",
+      "done": false
+    },
+    {
+      "id": "37",
+      "text": "Learn Rails",
+      "done": false
+    },
+    {
+      "id": "38",
+      "text": "Learn Swift",
+      "done": false
+    },
+    {
+      "id": "39",
+      "text": "Learn Kotlin",
+      "done": false
+    },
+    {
+      "id": "40",
+      "text": "Learn Objective-C",
+      "done": false
+    },
+    {
+      "id": "41",
+      "text": "Learn Android Development",
+      "done": false
+    },
+    {
+      "id": "42",
+      "text": "Learn iOS Development",
+      "done": false
+    },
+    {
+      "id": "43",
+      "text": "Learn Machine Learning",
+      "done": false
+    },
+    {
+      "id": "44",
+      "text": "Learn Data Science",
+      "done": false
+    },
+    {
+      "id": "45",
+      "text": "Learn AI",
+      "done": false
+    },
+    {
+      "id": "46",
+      "text": "Learn Blockchain",
+      "done": false
+    },
+    {
+      "id": "47",
+      "text": "Learn Solidity",
+      "done": false
+    },
+    {
+      "id": "48",
+      "text": "Learn Smart Contracts",
+      "done": false
+    },
+    {
+      "id": "49",
+      "text": "Learn DevOps",
+      "done": false
+    },
+    {
+      "id": "50",
+      "text": "Learn CI/CD",
+      "done": false
+    },
+    {
+      "id": "51",
+      "text": "Learn WebAssembly",
+      "done": false
+    },
+    {
+      "id": "52",
+      "text": "Learn Progressive Web Apps",
+      "done": false
+    },
+    {
+      "id": "53",
+      "text": "Learn Tailwind UI",
+      "done": false
+    },
+    {
+      "id": "54",
+      "text": "Learn Figma",
+      "done": false
+    },
+    {
+      "id": "55",
+      "text": "Learn Adobe XD",
+      "done": false
+    },
+    {
+      "id": "56",
+      "text": "Learn UI/UX Design",
+      "done": false
+    },
+    {
+      "id": "57",
+      "text": "Learn D3.js",
+      "done": false
+    },
+    {
+      "id": "58",
+      "text": "Learn Three.js",
+      "done": false
+    },
+    {
+      "id": "59",
+      "text": "Learn WebGL",
+      "done": false
+    },
+    {
+      "id": "60",
+      "text": "Learn Unity",
+      "done": false
+    },
+    {
+      "id": "61",
+      "text": "Learn Unreal Engine",
+      "done": false
+    },
+    {
+      "id": "62",
+      "text": "Learn Blender",
+      "done": false
+    },
+    {
+      "id": "63",
+      "text": "Learn Cinema 4D",
+      "done": false
+    },
+    {
+      "id": "64",
+      "text": "Learn Maya",
+      "done": false
+    },
+    {
+      "id": "65",
+      "text": "Learn Houdini",
+      "done": false
+    },
+    {
+      "id": "66",
+      "text": "Learn WebRTC",
+      "done": false
+    },
+    {
+      "id": "67",
+      "text": "Learn Electron",
+      "done": false
+    },
+    {
+      "id": "68",
+      "text": "Learn Tauri",
+      "done": false
+    },
+    {
+      "id": "69",
+      "text": "Learn Flutter",
+      "done": false
+    },
+    {
+      "id": "70",
+      "text": "Learn React Native",
+      "done": false
+    },
+    {
+      "id": "71",
+      "text": "Learn Ionic",
+      "done": false
+    },
+    {
+      "id": "72",
+      "text": "Learn Svelte",
+      "done": false
+    },
+    {
+      "id": "73",
+      "text": "Learn Alpine.js",
+      "done": false
+    },
+    {
+      "id": "74",
+      "text": "Learn LitElement",
+      "done": false
+    },
+    {
+      "id": "75",
+      "text": "Learn Storybook",
+      "done": false
+    },
+    {
+      "id": "76",
+      "text": "Learn Jest",
+      "done": false
+    },
+    {
+      "id": "77",
+      "text": "Learn Mocha",
+      "done": false
+    },
+    {
+      "id": "78",
+      "text": "Learn Chai",
+      "done": false
+    }
+  ]
+}
