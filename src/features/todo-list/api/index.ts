@@ -1,36 +1,51 @@
-const BASE_URL = "http://localhost:3000";
-
-export type PaginatedDto<T> = {
-  data: T[];
-  prev: number | null;
-  pages: number;
-  first: number;
-  items: number;
-  last: number;
-  next: number | null;
-};
-
-export type TodoDto = {
-  id: string;
-  text: string;
-  done: boolean;
-};
+import { infiniteQueryOptions, queryOptions } from "@tanstack/react-query";
+import { jsonApiInstance } from "../../../shared/api/api-instance.ts";
+import { TodoDto, PaginatedDto } from "../_domain/todo.ts";
 
 export const todoListApi = {
-  getTodoList: async (
-    { page }: { page: number },
-    {
-      signal
-    }: {
-      signal: AbortSignal;
-    }
-  ): Promise<PaginatedDto<TodoDto>> => {
-    const response = await fetch(
-      `${BASE_URL}/tasks?_page=${page}&per_page=10`,
-      {
-        signal
-      }
-    );
-    return await response.json();
+  baseKey: "tasks",
+  getTodoListQueryOptions: () => {
+    return queryOptions({
+      queryKey: [todoListApi.baseKey, "list"],
+      queryFn: meta =>
+        jsonApiInstance<TodoDto[]>(`/tasks`, {
+          signal: meta.signal
+        })
+    });
+  },
+
+  getTodoListInfiniteQueryOptions: () => {
+    return infiniteQueryOptions({
+      queryKey: [todoListApi.baseKey, "list"],
+      queryFn: meta =>
+        jsonApiInstance<PaginatedDto<TodoDto>>(
+          `/tasks?_page=${meta.pageParam}&_per_page=10`,
+          {
+            signal: meta.signal
+          }
+        ),
+      initialPageParam: 1,
+      getNextPageParam: result => result.next,
+      select: result => result.pages.flatMap(page => page.data)
+    });
+  },
+
+  createTodo: (payload: TodoDto) => {
+    return jsonApiInstance<TodoDto>("/tasks", {
+      method: "POST",
+      json: payload
+    });
+  },
+
+  updateTodo: (payload: Partial<TodoDto> & { id: string }) => {
+    return jsonApiInstance<TodoDto>(`/tasks/${payload.id}`, {
+      method: "PATCH",
+      json: payload
+    });
+  },
+  deleteTodo: (id: string) => {
+    return jsonApiInstance(`/tasks/${id}`, {
+      method: "DELETE"
+    });
   }
 };
