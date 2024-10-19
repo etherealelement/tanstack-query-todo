@@ -6,13 +6,9 @@ class ApiError extends Error {
   }
 }
 
-export const jsonApiInstance = <T>(
-  url: string,
-  init?: RequestInit
-) => async (meta: { signal?: AbortSignal }) => {
+export const jsonApiInstance = async <T>(url: string, init?: RequestInit) => {
   const result = await fetch(`${BASE_URL}${url}`, {
-    ...init,
-    signal: meta.signal
+    ...init
   });
 
   if (!result.ok) {
