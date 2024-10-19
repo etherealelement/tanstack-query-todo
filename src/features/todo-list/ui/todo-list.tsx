@@ -75,7 +75,7 @@ export function TodoList() {
             <div className="flex justify-between cursor-pointer  items-center bg-[#242424] border-blue-500 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300">
               <span className="text-white">{todo.text}</span>
               <motion.button
-                disabled={isLoadDelete}
+                disabled={isLoadDelete(todo.id)}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => handleDelete(todo.id)}

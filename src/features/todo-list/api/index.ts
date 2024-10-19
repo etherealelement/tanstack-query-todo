@@ -37,8 +37,8 @@ export const todoListApi = {
     });
   },
 
-  updateTodo: (id: string, payload: Partial<TodoDto>) => {
-    return jsonApiInstance<TodoDto>(`/tasks/${id}`, {
+  updateTodo: (payload: Partial<TodoDto> & { id: string }) => {
+    return jsonApiInstance<TodoDto>(`/tasks/${payload.id}`, {
       method: "PATCH",
       json: payload
     });

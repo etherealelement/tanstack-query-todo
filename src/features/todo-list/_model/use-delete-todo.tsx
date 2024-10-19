@@ -7,7 +7,9 @@ export function useDeleteTodo() {
   const deleteTodoMutation = useMutation({
     mutationFn: todoListApi.deleteTodo,
     async onSettled() {
-      queryClient.invalidateQueries(todoListApi.getTodoListQueryOptions());
+      queryClient.invalidateQueries({
+        queryKey: [todoListApi.baseKey]
+      });
     },
     async onSuccess(_, deletedId) {
       const todos = queryClient.getQueryData(
@@ -22,13 +24,17 @@ export function useDeleteTodo() {
     }
   });
 
-  const isLoadDelete = deleteTodoMutation.isPending;
+  const isLoadDelete = (id: string) =>
+    deleteTodoMutation.isPending && deleteTodoMutation.variables === id;
+
+  const variables = deleteTodoMutation.variables;
 
   const handleDelete = (id: string) => {
     deleteTodoMutation.mutate(id);
   };
 
   return {
+    variables,
     isLoadDelete,
     handleDelete
   };

@@ -9,9 +9,9 @@ export function useCreateTodo() {
   const createTodoMutation = useMutation({
     mutationFn: todoListApi.createTodo,
     onSettled: async () => {
-      return await queryClient.invalidateQueries(
-        todoListApi.getTodoListQueryOptions()
-      );
+      return await queryClient.invalidateQueries({
+        queryKey: [todoListApi.baseKey]
+      });
     }
   });
 
