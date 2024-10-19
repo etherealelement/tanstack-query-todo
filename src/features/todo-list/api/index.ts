@@ -15,6 +15,7 @@ export type TodoDto = {
   id: string;
   text: string;
   done: boolean;
+  userId: string;
 };
 
 export const todoListApi = {
@@ -44,6 +45,24 @@ export const todoListApi = {
       initialPageParam: 1,
       getNextPageParam: result => result.next,
       select: result => result.pages.flatMap(page => page.data)
+    });
+  },
+
+  createTodo: (payload: TodoDto) => {
+    return jsonApiInstance<TodoDto>("/tasks", {
+      method: "POST",
+      json: payload
+    });
+  },
+  updateTodo: (id: string, payload: Partial<TodoDto>) => {
+    return jsonApiInstance<TodoDto>(`/tasks/${id}`, {
+      method: "PATCH",
+      json: payload
+    });
+  },
+  deleteTodo: (id: string) => {
+    return jsonApiInstance(`/tasks/${id}`, {
+      method: "DELETE"
     });
   }
 };
