@@ -1,26 +1,6 @@
 {
   "tasks": [
     {
-      "id": "1",
-      "text": "Learn React",
-      "done": false
-    },
-    {
-      "id": "2",
-      "text": "Learn Angular",
-      "done": false
-    },
-    {
-      "id": "3",
-      "text": "Learn Vue",
-      "done": false
-    },
-    {
-      "id": "4",
-      "text": "Learn Node.js",
-      "done": false
-    },
-    {
       "id": "5",
       "text": "Learn TypeScript",
       "done": false
@@ -358,36 +338,6 @@
     {
       "id": "72",
       "text": "Learn Svelte",
-      "done": false
-    },
-    {
-      "id": "73",
-      "text": "Learn Alpine.js",
-      "done": false
-    },
-    {
-      "id": "74",
-      "text": "Learn LitElement",
-      "done": false
-    },
-    {
-      "id": "75",
-      "text": "Learn Storybook",
-      "done": false
-    },
-    {
-      "id": "76",
-      "text": "Learn Jest",
-      "done": false
-    },
-    {
-      "id": "77",
-      "text": "Learn Mocha",
-      "done": false
-    },
-    {
-      "id": "78",
-      "text": "Learn Chai",
       "done": false
     }
   ]
