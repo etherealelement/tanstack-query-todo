@@ -2,11 +2,13 @@ import { useTodoList } from "../_model/use-todo-list.tsx";
 import { useCreateTodo } from "../_model/use-create-todo.tsx";
 import { useDeleteTodo } from "../_model/use-delete-todo.tsx";
 import { motion, AnimatePresence } from "framer-motion";
+import { useToggleTodo } from "../_model/use-toggle-todo.tsx";
 
 export function TodoList() {
   const { error, isLoading, todoItems } = useTodoList();
   const { handleCreate, isLoadData } = useCreateTodo();
   const { handleDelete, isLoadDelete } = useDeleteTodo();
+  const { handleToggleTodo } = useToggleTodo();
 
   if (isLoading) {
     return (
@@ -73,6 +75,11 @@ export function TodoList() {
             className="list-none mb-4 bg-[#242424] border-blue-500"
           >
             <div className="flex justify-between cursor-pointer  items-center bg-[#242424] border-blue-500 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300">
+              <input
+                type="checkbox"
+                checked={todo.done}
+                onChange={() => handleToggleTodo(todo.id, todo.done)}
+              />
               <span className="text-white">{todo.text}</span>
               <motion.button
                 disabled={isLoadDelete(todo.id)}
