@@ -1,44 +1,18 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { todoListApi } from "../api";
 import { useCallback, useRef } from "react";
 
 export function useTodoList() {
-  const {
-    data: todoItems,
-    error,
-    status,
-    fetchStatus,
-    isPlaceholderData,
-    fetchNextPage,
-    isLoading,
-    hasNextPage,
-    isFetchingNextPage
-  } = useInfiniteQuery({
-    ...todoListApi.getTodoListInfiniteQueryOptions()
+  const { data: todoItems, error, refetch, isLoading } = useQuery({
+    ...todoListApi.getTodoListQueryOptions(),
+    select: data => data.reverse()
   });
-
-  const cursorRef = useIntersection(() => {
-    fetchNextPage();
-  });
-
-  const cursor = (
-    <div className="flex gap-2 items-center mt-4" ref={cursorRef}>
-      {!hasNextPage && <span>No more data</span>}
-      {isFetchingNextPage && <span>Loading...</span>}
-    </div>
-  );
 
   return {
     isLoading,
+    refetch,
     todoItems,
-    cursor,
-    error,
-    status,
-    fetchStatus,
-    isPlaceholderData,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage
+    error
   };
 }
 

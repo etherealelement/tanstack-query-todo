@@ -1,40 +1,22 @@
 import { infiniteQueryOptions, queryOptions } from "@tanstack/react-query";
 import { jsonApiInstance } from "../../../shared/api/api-instance.ts";
-
-export type PaginatedDto<T> = {
-  data: T[];
-  prev: number | null;
-  pages: number;
-  first: number;
-  items: number;
-  last: number;
-  next: number | null;
-};
-
-export type TodoDto = {
-  id: string;
-  text: string;
-  done: boolean;
-  userId: string;
-};
+import { TodoDto, PaginatedDto } from "../_domain/todo.ts";
 
 export const todoListApi = {
-  getTodoListQueryOptions: ({ page }: { page: number }) => {
+  baseKey: "tasks",
+  getTodoListQueryOptions: () => {
     return queryOptions({
-      queryKey: ["tasks", "list", { page }],
+      queryKey: [todoListApi.baseKey, "list"],
       queryFn: meta =>
-        jsonApiInstance<PaginatedDto<TodoDto>>(
-          `/tasks?_page=${page}&_per_page=10`,
-          {
-            signal: meta.signal
-          }
-        )
+        jsonApiInstance<TodoDto[]>(`/tasks`, {
+          signal: meta.signal
+        })
     });
   },
 
   getTodoListInfiniteQueryOptions: () => {
     return infiniteQueryOptions({
-      queryKey: ["tasks", "list"],
+      queryKey: [todoListApi.baseKey, "list"],
       queryFn: meta =>
         jsonApiInstance<PaginatedDto<TodoDto>>(
           `/tasks?_page=${meta.pageParam}&_per_page=10`,
@@ -54,6 +36,7 @@ export const todoListApi = {
       json: payload
     });
   },
+
   updateTodo: (id: string, payload: Partial<TodoDto>) => {
     return jsonApiInstance<TodoDto>(`/tasks/${id}`, {
       method: "PATCH",
