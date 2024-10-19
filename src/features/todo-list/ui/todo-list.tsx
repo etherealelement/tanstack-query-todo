@@ -16,7 +16,7 @@ export function TodoList() {
     isFetchingNextPage
   } = useInfiniteQuery({
     enabled: enabled,
-    ...todoListApi.getTodoListQueryOptions()
+    ...todoListApi.getTodoListInfiniteQueryOptions()
   });
 
   const cursorRef = useIntersection(() => {

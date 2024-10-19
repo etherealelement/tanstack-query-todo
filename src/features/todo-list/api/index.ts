@@ -1,4 +1,4 @@
-import { infiniteQueryOptions } from "@tanstack/react-query";
+import { infiniteQueryOptions, queryOptions } from "@tanstack/react-query";
 
 const BASE_URL = "http://localhost:3000";
 
@@ -36,10 +36,17 @@ export const todoListApi = {
     return await response.json();
   },
 
-  getTodoListQueryOptions: () => {
+  getTodoListQueryOptions: ({ page }: { page: number }) => {
+    return queryOptions({
+      queryKey: ["tasks", "list", { page }],
+      queryFn: meta => todoListApi.getTodoList({ page }, meta)
+    });
+  },
+
+  getTodoListInfiniteQueryOptions: () => {
     return infiniteQueryOptions({
       queryKey: ["tasks", "list"],
-      queryFn: meta => todoListApi.getTodoList({ page: meta.pageParam }, meta),
+      queryFn: meta => todoListApi.getTodoList({ page: 1 }, meta),
       initialPageParam: 1,
       getNextPageParam: result => result.next,
       select: result => result.pages.flatMap(page => page.data)
