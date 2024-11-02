@@ -3,12 +3,15 @@ import { useCreateTodo } from "../_model/use-create-todo.tsx";
 import { useDeleteTodo } from "../_model/use-delete-todo.tsx";
 import { motion, AnimatePresence } from "framer-motion";
 import { useToggleTodo } from "../_model/use-toggle-todo.tsx";
+import { useUser } from "../../auth/_model/use-user.ts";
 
 export function TodoList() {
   const { error, isLoading, todoItems } = useTodoList();
   const { handleCreate, isLoadData } = useCreateTodo();
   const { handleDelete, isLoadDelete } = useDeleteTodo();
   const { handleToggleTodo } = useToggleTodo();
+
+  const userQuery = useUser();
 
   if (isLoading) {
     return (
@@ -46,7 +49,7 @@ export function TodoList() {
         animate={{ y: 0 }}
         className="text-3xl font-bold mb-8 text-center text-blue-600"
       >
-        Todo List
+        Todo List. {userQuery.data?.login}
       </motion.h1>
       <form className="flex gap-3 mb-8" onSubmit={handleCreate}>
         <input
