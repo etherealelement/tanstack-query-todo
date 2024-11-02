@@ -1,6 +1,5 @@
 import { TodoList } from "../features/todo-list/ui/todo-list.tsx";
 import { useUser } from "../features/auth/_model/use-user.ts";
-import { Login } from "../features/auth/ui/login.tsx";
 
 export function App() {
   const { isLoading, data } = useUser();
@@ -9,9 +8,9 @@ export function App() {
     return <div>Loading...</div>;
   }
 
-  if (data) {
-    return <TodoList />;
-  }
+  // if (data) {
+  //   return <TodoList />;
+  // }
 
-  return <Login />;
+  return <TodoList />;
 }
